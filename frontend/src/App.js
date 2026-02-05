@@ -6,7 +6,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 function App() {
-  const [showNav, setShowNav] = useState(true);
+const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const scrollSliderRef = useRef(null);
 
@@ -14,11 +14,12 @@ function App() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY < lastScrollY && currentScrollY > 100) {
-        setShowNav(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowNav(false);
-      } else if (currentScrollY <= 100) {
+      // Logic:
+      // If we scroll down past 100px, set showNav to false (triggers absolute/scroll away)
+      // If we scroll up, set showNav to true (triggers fixed/stick to screen)
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowNav(false); 
+      } else {
         setShowNav(true);
       }
 
@@ -38,7 +39,6 @@ function App() {
       });
     }
   };
-
   return (
     <div className="App">
       {/* Premium Container Wrapper */}

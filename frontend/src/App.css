@@ -27,27 +27,32 @@ body {
   padding: 0;
 }
 
-/* Navigation Bar */
+/* Navigation Bar Base State */
 .navbar {
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(to bottom, #111111, #1A1A1A);
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  /* Use transition for transform only to prevent jumping */
+  transition: transform 0.4s ease, background 0.3s ease;
   padding: 16px 0;
 }
 
+/* STATE 1: Scrolling Up (Sticks to the screen) */
 .navbar.nav-visible {
+  position: fixed;
   transform: translateY(0);
-  opacity: 1;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
+/* STATE 2: Scrolling Down (Moves with the flow of the page) */
 .navbar.nav-hidden {
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
+  position: absolute; 
+  transform: translateY(0); 
+  background: transparent;
+  box-shadow: none;
 }
 
 .nav-container {
