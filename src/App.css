@@ -33,9 +33,13 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  /* Use transition for transform only to prevent jumping */
-  transition: transform 0.4s ease, background 0.3s ease;
   padding: 16px 0;
+  /* Smooth transitions for all animated properties */
+  transition: 
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* STATE 1: Scrolling Up (Sticks to the screen) */
@@ -43,16 +47,20 @@ body {
   position: fixed;
   transform: translateY(0);
   background: rgba(17, 17, 17, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  opacity: 1;
 }
 
 /* STATE 2: Scrolling Down (Moves with the flow of the page) */
 .navbar.nav-hidden {
   position: absolute; 
-  transform: translateY(0); 
+  transform: translateY(-100%);
   background: transparent;
   box-shadow: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .nav-container {
