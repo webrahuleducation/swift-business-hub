@@ -44,7 +44,7 @@ const [showNav, setShowNav] = useState(true);
       {/* Premium Container Wrapper */}
       <div className="premium-container !mx-[20px] !rounded-[20px]">
         {/* Navigation */}
-        <nav className="navbar nav-visible !mt-[20px] !ml-[20px] !mr-[20px] !rounded-t-[20px] !rounded-b-[20px]">
+        <nav className={`navbar ${showNav ? 'nav-visible' : 'nav-hidden'} !mt-[20px] !ml-[20px] !mr-[20px] !rounded-t-[20px] !rounded-b-[20px]`}>
           <div className="nav-container">
             <div className="nav-logo">
                 <img 
